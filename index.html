@@ -20,7 +20,11 @@
     <p id="result"></p>
 
     <script>
+        ////////////////////////////////////
+        // Where you choses the JSON file //
+        ////////////////////////////////////
         fetch('JSON/python.json')
+        
         .then(response => response.json())
         .then(data => {
             // Select 20 random questions
