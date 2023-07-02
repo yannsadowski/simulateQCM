@@ -6,6 +6,9 @@ The `simulateQCM` project is a tool designed for simulating multiple-choice quiz
 
 The questions are sourced from the quizzes file in the `linkedin-skill-assessments-quizzes` repository which is then converted into a JSON format by the Python script "qcmMLtoJSON.py". This script generates a "questions.json" file containing all quiz questions in a readily usable format. The "test.html" file serves as the user interface for taking the quiz.
 
+## Link
+You can use the following link for try with the machine learning [quizz](https://yannsadowski.github.io/simulateQCM/test.html)
+
 ## Usage 
 
 To use this project, you need to deploy it to a GitHub Pages website. This is necessary because the project uses fetch API which does not work with local files due to security reasons. Here are the steps:
