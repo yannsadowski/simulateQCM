@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz</title>
+    <style>
+        #quiz {
+            margin-bottom: 20px;
+        }
+        .correct {
+            background-color: #ccffcc;
+        }
+        .incorrect {
+            background-color: #ffcccc;
+        }
+    </style>
+</head>
+<body>
+    <div id="quiz"></div>
+    <button onclick="checkAnswers()">Valider le quiz</button>
+    <p id="result"></p>
+
+    <script>
+        fetch('questions.json')
+        .then(response => response.json())
+        .then(data => {
+            // Sélectionner 20 questions aléatoires
+            data.sort(() => Math.random() - 0.5);
+            data = data.slice(0, 20);
+            
+            let quizDiv = document.getElementById('quiz');
+            data.forEach((q, index) => {
+                let questionDiv = document.createElement('div');
+                questionDiv.id = `question${index}`;
+                questionDiv.innerHTML = `<p>${q.question}</p>`;
+                q.answers.forEach((a, i) => {
+                    let answerInput = document.createElement('input');
+                    answerInput.type = 'radio';
+                    answerInput.name = `question${index}`;
+                    answerInput.value = i;
+                    let answerLabel = document.createElement('label');
+                    answerLabel.textContent = a;
+                    questionDiv.appendChild(answerInput);
+                    questionDiv.appendChild(answerLabel);
+                    questionDiv.appendChild(document.createElement('br'));
+                });
+                quizDiv.appendChild(questionDiv);
+            });
+            
+            window.quizData = data; // Stocker les données du quiz pour plus tard
+        });
+
+        function checkAnswers() {
+            let score = 0;
+            window.quizData.forEach((q, index) => {
+                let selected = document.querySelector(`input[name="question${index}"]:checked`);
+                let questionDiv = document.getElementById(`question${index}`);
+                if (selected && Number(selected.value) === q.correct_answer) {
+                    score++;
+                    questionDiv.classList.add('correct');
+                } else {
+                    questionDiv.classList.add('incorrect');
+                }
+            });
+            document.getElementById('result').textContent = `Votre score est de ${score} sur 20.`;
+        }
+    </script>
+</body>
+</html>
