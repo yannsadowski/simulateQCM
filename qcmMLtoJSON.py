@@ -2,7 +2,7 @@ import json
 import re
 
 # Ouvrir et lire le fichier
-with open('D:\code\testQCM\qcmML.txt', 'r') as f:
+with open('machine-learning-quiz.md', 'r') as f:
     txt = f.read()
 
 # Sépare les questions
