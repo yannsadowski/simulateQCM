@@ -23,7 +23,7 @@
         fetch('questions.json')
         .then(response => response.json())
         .then(data => {
-            // Sélectionner 20 questions aléatoires
+            // Select 20 random questions
             data.sort(() => Math.random() - 0.5);
             data = data.slice(0, 20);
             
@@ -46,7 +46,7 @@
                 quizDiv.appendChild(questionDiv);
             });
             
-            window.quizData = data; // Stocker les données du quiz pour plus tard
+            window.quizData = data; // Store quiz data for later
         });
 
         function checkAnswers() {
@@ -61,7 +61,7 @@
                     questionDiv.classList.add('incorrect');
                 }
             });
-            document.getElementById('result').textContent = `Votre score est de ${score} sur 20.`;
+            document.getElementById('result').textContent = `Your score is ${score} out of 20.`;
         }
     </script>
 </body>
